@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adobe Flash ม.2: Scrolling Background</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap');
+        body { font-family: 'Sarabun', sans-serif; }
+        .step-content { display: none; }
+        .step-content.active { display: block; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Navigation -->
+    <nav class="bg-indigo-700 text-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-clapperboard text-2xl"></i>
+                <span class="font-bold text-xl tracking-tight">Flash Learning ม.2</span>
+            </div>
+            <div class="hidden md:flex gap-6">
+                <a href="#" class="hover:text-indigo-200 transition">หน้าแรก</a>
+                <a href="#" class="hover:text-indigo-200 transition">บทเรียนอื่น</a>
+                <a href="#" class="hover:text-indigo-200 transition">ติดต่อผู้สอน</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-indigo-600 text-white py-12 px-4">
+        <div class="container mx-auto text-center">
+            <h1 class="text-3xl md:text-5xl font-bold mb-4">การสร้างฉากเลื่อน (Scrolling Background)</h1>
+            <p class="text-indigo-100 text-lg max-w-2xl mx-auto">เรียนรู้เทคนิคการทำภาพเคลื่อนไหวแบบ Parallax ที่ใช้ในเกมและการ์ตูนด้วย Adobe Flash / Animate</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 max-w-5xl">
+        
+        <div class="flex flex-col md:flex-row gap-8">
+            <!-- Sidebar Navigation -->
+            <aside class="md:w-1/4">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sticky top-24">
+                    <h3 class="font-bold text-gray-900 mb-4 px-2">ขั้นตอนการเรียน</h3>
+                    <div class="space-y-1">
+                        <button onclick="showStep(1)" id="btn-step-1" class="step-btn w-full text-left px-4 py-2 rounded-lg bg-indigo-50 text-indigo-700 font-semibold border-l-4 border-indigo-700 transition">
+                            1. การเตรียมเลเยอร์
+                        </button>
+                        <button onclick="showStep(2)" id="btn-step-2" class="step-btn w-full text-left px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-50 transition border-l-4 border-transparent">
+                            2. การสร้างถนน
+                        </button>
+                        <button onclick="showStep(3)" id="btn-step-3" class="step-btn w-full text-left px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-50 transition border-l-4 border-transparent">
+                            3. การสร้างก้อนเมฆ
+                        </button>
+                        <button onclick="showStep(4)" id="btn-step-4" class="step-btn w-full text-left px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-50 transition border-l-4 border-transparent">
+                            4. การทำวนลูป (Loop)
+                        </button>
+                        <button onclick="showStep(5)" id="btn-step-5" class="step-btn w-full text-left px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-50 transition border-l-4 border-transparent">
+                            5. แบบทดสอบท้ายบท
+                        </button>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Content Area -->
+            <section class="md:w-3/4">
+                
+                <!-- Step 1 -->
+                <div id="step-1" class="step-content active bg-white rounded-2xl shadow-sm border border-gray-200 p-8 animate-fadeIn">
+                    <h2 class="text-2xl font-bold text-indigo-700 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group"></i> ขั้นตอนที่ 1: การเตรียมเลเยอร์
+                    </h2>
+                    <p class="mb-6 text-gray-600 leading-relaxed">ในการทำฉากเคลื่อนที่ เราต้องแยกวัตถุที่มีความเร็วต่างกันไว้คนละเลเยอร์ เพื่อให้เกิดมิติความลึก (Parallax)</p>
+                    
+                    <div class="bg-gray-100 p-6 rounded-xl mb-6">
+                        <h4 class="font-bold mb-3">สร้างเลเยอร์ใหม่ 3 ชั้น (ล่างไปบน):</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3">
+                                <span class="w-8 h-8 bg-indigo-600 text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
+                                <span><strong>Sky:</strong> สำหรับท้องฟ้าและพื้นหลังที่อยู่นิ่ง</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-8 h-8 bg-indigo-600 text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
+                                <span><strong>Clouds:</strong> สำหรับก้อนเมฆ (เคลื่อนที่ช้า)</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-8 h-8 bg-indigo-600 text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
+                                <span><strong>Road:</strong> สำหรับพื้นถนน (เคลื่อนที่เร็ว)</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="border-2 border-dashed border-gray-200 rounded-xl p-4 text-center">
+                        
+                        <p class="text-sm text-gray-400 mt-2 italic">ตัวอย่างแผง Timeline ที่แยกเลเยอร์เรียบร้อยแล้ว</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div id="step-2" class="step-content bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
+                    <h2 class="text-2xl font-bold text-indigo-700 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-road"></i> ขั้นตอนที่ 2: การสร้างถนน (Road)
+                    </h2>
+                    <div class="prose prose-indigo max-w-none text-gray-600 space-y-4">
+                        <p>1. ในเลเยอร์ <strong>Road</strong> ให้วาดรูปถนนที่มีเส้นประยาวกว่าขนาดของ Stage ประมาณ 2 เท่า</p>
+                        <p>2. เลือกรูปถนนทั้งหมดแล้วกด <kbd class="px-2 py-1 bg-gray-200 rounded">F8</kbd> เพื่อเปลี่ยนเป็น <strong>Movie Clip Symbol</strong></p>
+                        <p>3. คลิกขวาที่เฟรมที่ 1 บน Timeline เลือก <strong class="text-indigo-600">Create Motion Tween</strong></p>
+                        <p>4. ไปที่เฟรมที่ 30 ลากถนนไปทางซ้ายให้ขอบด้านขวามาชนกับขอบ Stage พอดี</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div id="step-3" class="step-content bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
+                    <h2 class="text-2xl font-bold text-indigo-700 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-cloud"></i> ขั้นตอนที่ 3: การสร้างก้อนเมฆ (Clouds)
+                    </h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-4 text-gray-600">
+                            <p>ใช้หลักการเดียวกับถนน แต่ก้อนเมฆควรจะ <strong>"เคลื่อนที่ช้ากว่า"</strong> เพื่อให้ดูอยู่ไกล</p>
+                            <ul class="list-disc ml-5 space-y-2">
+                                <li>วาดก้อนเมฆและแปลงเป็น Symbol</li>
+                                <li>สร้าง Motion Tween เหมือนเดิม</li>
+                                <li><strong>เทคนิคสำคัญ:</strong> ให้กำหนดจุดจบที่เฟรม 80 หรือ 100 แทน 30 เพื่อให้ความเร็วช้าลง</li>
+                            </ul>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100 italic text-indigo-800 text-sm">
+                            "กฎของ Parallax: วัตถุที่อยู่ไกลสายตาจะดูเคลื่อนที่ช้ากว่าวัตถุที่อยู่ใกล้เสมอ"
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div id="step-4" class="step-content bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
+                    <h2 class="text-2xl font-bold text-indigo-700 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-rotate"></i> ขั้นตอนที่ 4: การทำวนลูป (Looping)
+                    </h2>
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                        <p class="text-yellow-800">เพื่อให้ฉากเลื่อนดูเนียนตา ตำแหน่งภาพใน <strong>เฟรมสุดท้าย</strong> จะต้องเชื่อมต่อกับ <strong>เฟรมแรก</strong> ได้พอดี</p>
+                    </div>
+                    <p class="text-gray-600 mb-4">ทดสอบผลลัพธ์โดยการกด:</p>
+                    <div class="flex gap-4">
+                        <div class="bg-black text-white px-6 py-3 rounded-lg font-mono flex items-center gap-2 shadow-lg">
+                            <span class="text-gray-400">Ctrl</span> + <span class="text-gray-400">Enter</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5 (Quiz) -->
+                <div id="step-5" class="step-content bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
+                    <h2 class="text-2xl font-bold text-indigo-700 mb-6">แบบทดสอบความเข้าใจ</h2>
+                    <div id="quiz-container" class="space-y-6">
+                        <div>
+                            <p class="font-semibold mb-3 text-lg">1. ถ้าต้องการให้วัตถุเคลื่อนที่ "ช้าลง" นักเรียนต้องทำอย่างไร?</p>
+                            <div class="grid gap-3">
+                                <button onclick="checkAnswer(this, false)" class="quiz-opt w-full text-left p-4 rounded-xl border border-gray-200 hover:border-indigo-500 transition">ก. ลดจำนวนเฟรมใน Timeline ให้สั้นลง</button>
+                                <button onclick="checkAnswer(this, true)" class="quiz-opt w-full text-left p-4 rounded-xl border border-gray-200 hover:border-indigo-500 transition">ข. เพิ่มจำนวนเฟรมใน Timeline ให้ยาวขึ้น</button>
+                                <button onclick="checkAnswer(this, false)" class="quiz-opt w-full text-left p-4 rounded-xl border border-gray-200 hover:border-indigo-500 transition">ค. เปลี่ยนสีวัตถุให้สว่างขึ้น</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="feedback" class="mt-6 hidden p-4 rounded-lg text-center font-bold"></div>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-gray-100 border-t border-gray-200 py-8 mt-12">
+        <div class="container mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>&copy; 2024 Adobe Flash Learning Module for Grade 8. สร้างด้วย Tailwind CSS</p>
+        </div>
+    </footer>
+
+    <script>
+        function showStep(stepNum) {
+            // Hide all steps
+            document.querySelectorAll('.step-content').forEach(step => {
+                step.classList.remove('active');
+            });
+            // Show current step
+            document.getElementById('step-' + stepNum).classList.add('active');
+
+            // Update button styles
+            document.querySelectorAll('.step-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-50', 'text-indigo-700', 'font-semibold', 'border-indigo-700');
+                btn.classList.add('text-gray-600', 'border-transparent');
+            });
+            
+            const activeBtn = document.getElementById('btn-step-' + stepNum);
+            activeBtn.classList.add('bg-indigo-50', 'text-indigo-700', 'font-semibold', 'border-indigo-700');
+            activeBtn.classList.remove('text-gray-600', 'border-transparent');
+
+            // Scroll to top of content for mobile
+            if(window.innerWidth < 768) {
+                window.scrollTo({ top: 400, behavior: 'smooth' });
+            }
+        }
+
+        function checkAnswer(btn, isCorrect) {
+            const feedback = document.getElementById('feedback');
+            feedback.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700');
+            
+            // Reset all buttons in this quiz
+            document.querySelectorAll('.quiz-opt').forEach(opt => {
+                opt.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500');
+            });
+
+            if(isCorrect) {
+                btn.classList.add('bg-green-100', 'border-green-500');
+                feedback.innerText = "ถูกต้องแล้ว! การเพิ่มเฟรมคือการเพิ่มเวลา ทำให้การเคลื่อนที่ช้าลง";
+                feedback.classList.add('bg-green-100', 'text-green-700');
+            } else {
+                btn.classList.add('bg-red-100', 'border-red-500');
+                feedback.innerText = "ยังไม่ถูกครับ ลองใหม่อีกครั้งนะ!";
+                feedback.classList.add('bg-red-100', 'text-red-700');
+            }
+            feedback.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
