@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบฝึกหัด 2: ยอดนักวางแผนปาร์ตี้ - Excel Master</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&family=Sarabun:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+        }
+
+        .font-prompt {
+            font-family: 'Prompt', sans-serif;
+        }
+
+        .step-active {
+            border-color: #16a34a;
+            background-color: #f0fdf4;
+        }
+
+        .excel-cell {
+            border: 1px solid #e2e8f0;
+            min-width: 80px;
+            height: 32px;
+            padding: 0 8px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            background-color: white;
+        }
+
+        .excel-header {
+            background-color: #f8fafc;
+            font-weight: bold;
+            justify-content: center;
+            color: #64748b;
+        }
+
+        .highlight-pulse {
+            animation: pulse 2s infinite;
+            border: 2px solid #16a34a;
+            z-index: 10;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(22, 163, 74, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(22, 163, 74, 0);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-100 text-slate-800 pb-20">
+
+    <!-- Header -->
+    <header class="bg-indigo-700 text-white py-8 shadow-lg">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h1 class="text-3xl font-bold font-prompt mb-2">ภารกิจท้าทาย: ยอดนักวางแผนปาร์ตี้</h1>
+            <p class="text-indigo-100">ช่วยคำนวณงบประมาณอาหารสำหรับปาร์ตี้สุดพิเศษ!</p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 mt-8 grid lg:grid-cols-12 gap-8">
+
+        <!-- Left Side: Interactive Excel Simulator -->
+        <div class="lg:col-span-7">
+            <div class="bg-white rounded-xl shadow-xl overflow-hidden border border-slate-200">
+                <!-- Excel Toolbar Mockup -->
+                <div class="bg-slate-50 border-b p-3 flex items-center gap-4 text-slate-400">
+                    <div class="flex gap-2 text-xs">
+                        <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-400"></span>
+                    </div>
+                    <div class="bg-white border rounded px-3 py-1 text-sm text-slate-600 flex-grow font-mono">
+                        fx | <span id="formula-bar" class="text-blue-600"></span>
+                    </div>
+                </div>
+
+                <!-- Excel Grid -->
+                <div class="overflow-x-auto p-4 bg-white">
+                    <div class="inline-grid grid-cols-[40px_repeat(4,1fr)]">
+                        <!-- Headers -->
+                        <div class="excel-cell excel-header italic">/</div>
+                        <div class="excel-cell excel-header">A</div>
+                        <div class="excel-cell excel-header">B</div>
+                        <div class="excel-cell excel-header">C</div>
+                        <div class="excel-cell excel-header">D</div>
+
+                        <!-- Row 1: หัวตาราง -->
+                        <div class="excel-cell excel-header">1</div>
+                        <div class="excel-cell font-bold bg-slate-50">รายการอาหาร</div>
+                        <div class="excel-cell font-bold bg-slate-50 border-r-2 border-slate-200">ราคา (บาท)</div>
+                        <div class="excel-cell"></div>
+                        <div class="excel-cell"></div>
+
+                        <!-- Row 2 -->
+                        <div class="excel-cell excel-header">2</div>
+                        <div class="excel-cell">พิซซ่าถาดใหญ่</div>
+                        <div class="excel-cell justify-end border-r-2 border-slate-100">250</div>
+                        <div class="excel-cell"></div>
+                        <div class="excel-cell"></div>
+
+                        <!-- Row 3 -->
+                        <div class="excel-cell excel-header">3</div>
+                        <div class="excel-cell">ไก่ทอด</div>
+                        <div class="excel-cell justify-end border-r-2 border-slate-100">180</div>
+                        <div class="excel-cell"></div>
+                        <div class="excel-cell"></div>
+
+                        <!-- Row 4 -->
+                        <div class="excel-cell excel-header">4</div>
+                        <div class="excel-cell">เค้กช็อกโกแลต</div>
+                        <div class="excel-cell justify-end border-r-2 border-slate-100">350</div>
+                        <div class="excel-cell"></div>
+                        <div class="excel-cell"></div>
+
+                        <!-- Row 5 -->
+                        <div class="excel-cell excel-header">5</div>
+                        <div class="excel-cell">น้ำอัดลม 3 ขวด</div>
+                        <div class="excel-cell justify-end border-r-2 border-slate-100">100</div>
+                        <div class="excel-cell"></div>
+                        <div class="excel-cell"></div>
+
+                        <!-- Row 6 -->
+                        <div class="excel-cell excel-header">6</div>
+                        <div class="excel-cell">มันฝรั่งทอด</div>
+                        <div class="excel-cell justify-end border-r-2 border-slate-100">60</div>
+                        <div class="excel-cell"></div>
+                        <div class="excel-cell"></div>
+
+                        <!-- Row 7 (Result Row) -->
+                        <div class="excel-cell excel-header">7</div>
+                        <div class="excel-cell font-bold text-blue-700 italic">รวมเป็นเงิน</div>
+                        <div id="cell-b7"
+                            class="excel-cell justify-end font-bold transition-all duration-300 border-r-2 border-slate-100">
+                        </div>
+                        <div class="excel-cell"></div>
+                        <div class="excel-cell"></div>
+
+                        <!-- Row 8 (Average Row) -->
+                        <div class="excel-cell excel-header">8</div>
+                        <div class="excel-cell font-bold text-purple-700 italic">ราคาเฉลี่ย</div>
+                        <div id="cell-b8"
+                            class="excel-cell justify-end font-bold transition-all duration-300 border-r-2 border-slate-100">
+                        </div>
+                        <div class="excel-cell"></div>
+                        <div class="excel-cell"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Result Box -->
+            <div id="result-message" class="mt-6 p-6 bg-indigo-50 rounded-xl border-2 border-indigo-200 hidden">
+                <div class="flex items-start gap-4">
+                    <div class="bg-indigo-500 text-white p-2 rounded-full">
+                        <i class="fa-solid fa-party-horn"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-indigo-800 text-lg">ปาร์ตี้พร้อมเริ่ม!</h4>
+                        <p class="text-indigo-700">คุณคำนวณงบประมาณได้ถูกต้องแม่นยำ ปาร์ตี้นี้ต้องสนุกแน่นอน!
+                        </p>
+                        <a href="excel1.html"
+                            class="inline-block mt-4 text-sm font-bold text-indigo-600 hover:text-indigo-800 underline">
+                            <i class="fa-solid fa-arrow-left"></i> กลับไปหน้าหลัก
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Steps -->
+        <div class="lg:col-span-5 space-y-4">
+            <h2 class="text-xl font-bold font-prompt text-slate-700 mb-4 px-2">ขั้นตอนการคำนวณ</h2>
+
+            <!-- Step 1 -->
+            <div id="step-1"
+                class="bg-white p-5 rounded-xl border-2 border-slate-200 shadow-sm transition-all cursor-pointer"
+                onclick="activateStep(1)">
+                <div class="flex gap-4">
+                    <span
+                        class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center font-bold shrink-0">1</span>
+                    <div>
+                        <h3 class="font-bold mb-1">หาผลรวมราคาอาหารทั้งหมด</h3>
+                        <p class="text-sm text-slate-500">คลิกที่เซลล์ <span class="font-bold text-slate-700">B7</span>
+                            เพื่อเตรียมใส่สูตร</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div id="step-2"
+                class="bg-white p-5 rounded-xl border-2 border-slate-200 shadow-sm opacity-50 transition-all cursor-pointer"
+                onclick="activateStep(2)">
+                <div class="flex gap-4">
+                    <span
+                        class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center font-bold shrink-0">2</span>
+                    <div>
+                        <h3 class="font-bold mb-1">พิมพ์สูตร SUM</h3>
+                        <p class="text-sm text-slate-500 mb-3">รวมราคาตั้งแต่แถวที่ 2 ถึง 6:</p>
+                        <div
+                            class="bg-slate-100 p-2 rounded font-mono text-blue-700 text-center text-lg font-bold select-all">
+                            =SUM(B2:B6)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div id="step-3"
+                class="bg-white p-5 rounded-xl border-2 border-slate-200 shadow-sm opacity-50 transition-all cursor-pointer"
+                onclick="activateStep(3)">
+                <div class="flex gap-4">
+                    <span
+                        class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center font-bold shrink-0">3</span>
+                    <div>
+                        <h3 class="font-bold mb-1">ผลลัพธ์รวม</h3>
+                        <p class="text-sm text-slate-500">รวมเงินทั้งหมด: <span
+                                class="font-bold text-green-600">940</span> บาท</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div id="step-4"
+                class="bg-white p-5 rounded-xl border-2 border-slate-200 shadow-sm opacity-50 transition-all cursor-pointer"
+                onclick="activateStep(4)">
+                <div class="flex gap-4">
+                    <span
+                        class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center font-bold shrink-0">4</span>
+                    <div>
+                        <h3 class="font-bold mb-1">หาราคาเฉลี่ย (AVERAGE)</h3>
+                        <p class="text-sm text-slate-500 mb-3">หาค่าเฉลี่ยต่อจานที่เซลล์ B8:</p>
+                        <div class="bg-slate-100 p-2 rounded font-mono text-purple-700 text-center text-lg font-bold">
+                            =AVERAGE(B2:B6)
+                        </div>
+                        <p class="text-xs text-slate-400 mt-2">*ผลลัพธ์ควรจะได้ 188</p>
+                    </div>
+                </div>
+            </div>
+
+            <button id="btn-next" onclick="nextStep()"
+                class="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold font-prompt shadow-lg hover:bg-indigo-700 transition-all">
+                เริ่มคำนวณ <i class="fa-solid fa-calculator ml-2"></i>
+            </button>
+        </div>
+
+    </main>
+
+    <script>
+        let currentStep = 0;
+
+        function activateStep(stepNumber) {
+            currentStep = stepNumber;
+            updateUI();
+        }
+
+        function nextStep() {
+            if (currentStep < 4) {
+                currentStep++;
+                updateUI();
+            }
+        }
+
+        function updateUI() {
+            for (let i = 1; i <= 4; i++) {
+                const stepEl = document.getElementById(`step-${i}`);
+                stepEl.classList.remove('step-active', 'opacity-100', 'border-green-500');
+                stepEl.classList.add('opacity-50');
+            }
+
+            const cellSum = document.getElementById('cell-b7');
+            const cellAvg = document.getElementById('cell-b8');
+            const formulaBar = document.getElementById('formula-bar');
+            const resultMsg = document.getElementById('result-message');
+            const btnNext = document.getElementById('btn-next');
+
+            cellSum.classList.remove('highlight-pulse', 'bg-green-50');
+            cellSum.innerText = "";
+            cellAvg.classList.remove('highlight-pulse', 'bg-purple-50');
+            cellAvg.innerText = "";
+            formulaBar.innerText = "";
+            resultMsg.classList.add('hidden');
+
+            if (currentStep >= 1) {
+                document.getElementById('step-1').classList.add('step-active', 'opacity-100', 'border-green-500');
+                cellSum.classList.add('highlight-pulse');
+                btnNext.innerText = "เลือกเซลล์เรียบร้อย";
+            }
+
+            if (currentStep >= 2) {
+                document.getElementById('step-2').classList.add('step-active', 'opacity-100', 'border-green-500');
+                formulaBar.innerText = "=SUM(B2:B6)";
+                cellSum.innerText = "=SUM(B2:B6)";
+                btnNext.innerText = "กด Enter";
+            }
+
+            if (currentStep >= 3) {
+                document.getElementById('step-3').classList.add('step-active', 'opacity-100', 'border-green-500');
+                cellSum.innerText = "940";
+                cellSum.classList.add('bg-green-50');
+                cellSum.classList.remove('highlight-pulse');
+                resultMsg.classList.remove('hidden');
+                btnNext.innerText = "คำนวณค่าเฉลี่ยต่อ";
+            }
+
+            if (currentStep >= 4) {
+                document.getElementById('step-4').classList.add('step-active', 'opacity-100', 'border-green-500');
+                cellAvg.classList.add('highlight-pulse', 'bg-purple-50');
+                cellAvg.innerText = "188"; // 940 / 5
+                btnNext.innerText = "ภารกิจสำเร็จ!";
+                btnNext.disabled = true;
+                btnNext.classList.add('bg-slate-400', 'cursor-not-allowed');
+            }
+        }
+    </script>
+</body>
+
+</html>
